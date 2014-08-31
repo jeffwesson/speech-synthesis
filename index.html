@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="speechSynthesis">
+<head>
+  <meta charset="UTF-8">
+  <title>Speech Synthesis</title>
+  <script src="./bower_components/angular/angular.min.js"></script>
+  <script src="./bower_components/angular-route/angular-route.min.js"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav ng-controller="NavCtrl as navCtrl">
+    <ul>
+      <li ng-repeat="navLink in navCtrl.navLinks">
+        <a ng-href="{{navLink.url}}">{{navLink.name}}</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Application View -->
+  <div ng-view=""></div>
+
+  <!-- Footer -->
+  <footer ng-controller="FooterCtrl as footerCtrl">
+    <span>&copy; {{footerCtrl.currentYear}}</span>
+  </footer>
+
+<script src="./speech-synthesis.js"></script>
+<script src="./components/nav/nav.controller.js"></script>
+<script src="./components/main/main.controller.js"></script>
+<script src="./components/footer/footer.controller.js"></script>
+</body>
+</html>
