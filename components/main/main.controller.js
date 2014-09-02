@@ -2,6 +2,8 @@
   'use strict';
 
   function MainCtrl($window, $timeout, $log) {
+    var god = this;
+
     this.mainThings = [
       {
         name: 'one',
@@ -17,22 +19,23 @@
       }
     ];
 
-    this.position = {};
+    this.geoLocation = {};
 
     this.getLocation = function() {
       navigator.geolocation.getCurrentPosition(function(position) {
-        $log.log(position.coords.latitude);
-        $log.log(position.coords.longitude);
+        god.geoLocation.latitude = position.coords.latitude;
+        god.geoLocation.longitude = position.coords.longitude;
+        god.geoLocation.string = "Latitude is " + god.geoLocation.latitude.toString() + ", and longitude is " + god.geoLocation.longitude.toString();
+        console.log(god.geoLocation);
+        return god.geoLocation;
       });
     };
 
-    this.utterance = '';
-
-    this.speakUtterance = function() {
-      var saying = new SpeechSynthesisUtterance(this.utterance);
+    this.speakUtterance = function(utt) {
+      var saying = new SpeechSynthesisUtterance(utt);
       $window.speechSynthesis.speak(saying);
-      $timeout($window.speechSynthesis.speak(this.position.latitude.toString()), 2000);
-      $timeout($window.speechSynthesis.speak(this.position.longitude.toString()), 2000);
+      this.utterance = '';
+      console.log(god.geoLocation.string);
     };
   }
 
