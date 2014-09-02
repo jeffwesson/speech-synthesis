@@ -1,8 +1,8 @@
 (function() {
   'use strict';
 
-  function MainCtrl($window, $timeout, $log) {
-    var god = this;
+  function MainCtrl($window) {
+    var that = this;
 
     this.mainThings = [
       {
@@ -23,11 +23,11 @@
 
     this.getLocation = function() {
       navigator.geolocation.getCurrentPosition(function(position) {
-        god.geoLocation.latitude = position.coords.latitude;
-        god.geoLocation.longitude = position.coords.longitude;
-        god.geoLocation.string = "Latitude is " + god.geoLocation.latitude.toString() + ", and longitude is " + god.geoLocation.longitude.toString();
-        console.log(god.geoLocation);
-        return god.geoLocation;
+        that.geoLocation.latitude = position.coords.latitude;
+        that.geoLocation.longitude = position.coords.longitude;
+        that.geoLocation.string = "Latitude is " + that.geoLocation.latitude.toString() + ", and longitude is " + that.geoLocation.longitude.toString();
+        console.log(that.geoLocation);
+        return that.geoLocation;
       });
     };
 
@@ -35,7 +35,7 @@
       var saying = new SpeechSynthesisUtterance(utt);
       $window.speechSynthesis.speak(saying);
       this.utterance = '';
-      console.log(god.geoLocation.string);
+      console.log(that.geoLocation.string);
     };
   }
 
