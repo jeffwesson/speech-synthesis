@@ -19,6 +19,6 @@
 
   }
 
-  angular.module('speechSynthesis')
-    .controller('NavCtrl', NavCtrl);
+  angular.module('speechSynthesis').
+    controller('NavCtrl', NavCtrl);
 })();

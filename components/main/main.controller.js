@@ -1,8 +1,8 @@
 (function() {
   'use strict';
 
-  function MainCtrl($window) {
-    var that = this;
+  function MainCtrl($scope, $window) {
+    var vm = this;
 
     this.mainThings = [
       {
@@ -21,13 +21,16 @@
 
     this.geoLocation = {};
 
+    $scope.hasLocation = false;
+
     this.getLocation = function() {
       navigator.geolocation.getCurrentPosition(function(position) {
-        that.geoLocation.latitude = position.coords.latitude;
-        that.geoLocation.longitude = position.coords.longitude;
-        that.geoLocation.string = "Latitude is " + that.geoLocation.latitude.toString() + ", and longitude is " + that.geoLocation.longitude.toString();
-        console.log(that.geoLocation);
-        return that.geoLocation;
+        vm.geoLocation.latitude = position.coords.latitude;
+        vm.geoLocation.longitude = position.coords.longitude;
+        vm.geoLocation.string = "Latitude is " + vm.geoLocation.latitude.toString()
+          + ", and longitude is " + vm.geoLocation.longitude.toString();
+        $scope.hasLocation = true;
+        return vm.geoLocation;
       });
     };
 
@@ -35,10 +38,9 @@
       var saying = new SpeechSynthesisUtterance(utt);
       $window.speechSynthesis.speak(saying);
       this.utterance = '';
-      console.log(that.geoLocation.string);
     };
   }
 
-  angular.module('speechSynthesis')
-    .controller('MainCtrl', MainCtrl);
+  angular.module('speechSynthesis').
+    controller('MainCtrl', MainCtrl);
 })();
