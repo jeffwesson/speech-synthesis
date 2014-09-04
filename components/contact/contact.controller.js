@@ -18,6 +18,6 @@
     ];
   }
 
-  angular.module('speechSynthesis')
-    .controller('ContactCtrl', ContactCtrl);
+  angular.module('speechSynthesis').
+    controller('ContactCtrl', ContactCtrl);
 })();

@@ -1,5 +1,13 @@
 <p>This is the main view.</p>
-<form ng-submit="mainCtrl.speakUtterance()">
+<form ng-submit="mainCtrl.speakUtterance(mainCtrl.utterance)">
   <input type="text" ng-model="mainCtrl.utterance">
   <button type="submit">Speak Utterance</button>
+</form>
+
+<form ng-submit="mainCtrl.getLocation()">
+  <button type="submit">Get My GeoLocation</button>
+</form>
+
+<form ng-submit="mainCtrl.speakUtterance(mainCtrl.geoLocation.string)">
+  <button type="submit">Say My GeoLocation</button>
 </form>
